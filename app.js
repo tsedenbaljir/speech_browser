@@ -1,6 +1,11 @@
 const btn = document.querySelector('.talk');
 const content = document.querySelector('.content');
 
+const greetings = [
+    'im fined how are you today',
+    'so happy today',
+    'i wokeup'
+];
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
@@ -23,10 +28,27 @@ btn.addEventListener('click', () =>{
 
 function readOutLoud(message){
     const speech = new SpeechSynthesisUtterance();
-    speech.text = message;
+    speech.text = "i'm not understund";
+
+    if(message.includes('how are you')){
+        const finalText = greetings[(Math.random() * greetings.length)];
+        
+        speech.text = finalText;
+    }
+
     speech.volume = 1;
     speech.rate = 1;
     speech.pitch = 1;
 
     window.speechSynthesis.speak(speech);
 }
+
+// function readOutLoud(message){
+//     const speech = new SpeechSynthesisUtterance();
+//     speech.text = message;
+//     speech.volume = 1;
+//     speech.rate = 1;
+//     speech.pitch = 1;
+
+//     window.speechSynthesis.speak(speech);
+// }
